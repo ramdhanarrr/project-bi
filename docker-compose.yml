@@ -1,0 +1,106 @@
+services:
+  db:
+    image: postgres:16
+    container_name: dw_postgres
+    restart: always
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks: [bi-net]
+
+  metabase:
+    image: metabase/metabase:latest
+    container_name: bi_metabase
+    restart: always
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "3001:3000"
+    environment:
+      MB_DB_TYPE: postgres
+      MB_DB_HOST: db
+      MB_DB_PORT: 5432
+      MB_DB_DBNAME: postgres
+      MB_DB_USER: postgres        # boleh pakai 'metabase' kalau kamu sudah bikin user itu
+      MB_DB_PASS: admin           # sesuaikan kalau ganti user
+      MB_SITE_URL: "http://localhost:3001"
+      JAVA_TIMEZONE: "Asia/Jakarta"
+      MB_JAVA_OPTS: "-Xms512m -Xmx1024m"
+    networks: [bi-net]
+
+  laravel:
+    build:
+      context: ./laravel
+      dockerfile: Dockerfile
+    container_name: app_laravel
+    restart: always
+    depends_on: [db]
+    ports:
+      - "8000:8000"
+    environment:
+      DB_CONNECTION: pgsql
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_DATABASE: postgres
+      DB_USERNAME: postgres
+      DB_PASSWORD: admin
+      APP_ENV: local
+      APP_DEBUG: "true"
+    working_dir: /var/www/html
+    command: ["php","artisan","serve","--host=0.0.0.0","--port=8000"]
+    volumes:
+      - ./laravel:/var/www/html
+    networks: [bi-net]
+
+  nextjs:
+    build:
+      context: ./nextjs
+      dockerfile: Dockerfile
+    container_name: app_nextjs
+    restart: always
+    depends_on: [laravel]
+    ports:
+      - "3003:3000"
+    environment:
+      NODE_ENV: development
+      NEXT_TELEMETRY_DISABLED: "1"
+    volumes:
+      - ./nextjs:/app
+      - /app/node_modules
+      - /app/.next
+    command: ["npm","run","dev","--","-p","3000","-H","0.0.0.0"]
+    networks: [bi-net]
+
+  mondrian:
+    image: tomcat:9-jdk11
+    container_name: olap_mondrian
+    restart: always
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8081:8080"
+    environment:
+      JAVA_OPTS: "-Xms512m -Xmx1024m"
+    volumes:
+      # pastikan file2 ini BENAR-BENAR ada di host:
+      - ./mondrian/webapps/mondrian.war:/usr/local/tomcat/webapps/mondrian.war:ro
+      - ./mondrian/lib/postgresql.jar:/usr/local/tomcat/lib/postgresql.jar:ro  # contoh: postgresql-42.7.3.jar → rename ke postgresql.jar atau ganti path kanan
+      - ./mondrian/schema:/opt/mondrian/schema:ro
+      - ./mondrian/context.xml:/usr/local/tomcat/conf/Catalina/localhost/mondrian.xml:ro
+    networks: [bi-net]
+
+networks:
+  bi-net:
+    driver: bridge

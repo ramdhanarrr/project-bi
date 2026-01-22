@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataSources>
+  <DataSource>
+    <DataSourceName>PostgresDW</DataSourceName>
+    <DataSourceDescription>Data Warehouse PostgreSQL</DataSourceDescription>
+
+    <!-- XMLA endpoint -->
+    <URL>http://localhost:8081/mondrian/xmla</URL>
+
+    <!-- Default connection -->
+    <DataSourceInfo>
+      Provider=mondrian;
+      Jdbc=jdbc:postgresql://db:5432/postgres;
+      JdbcUser=postgres;
+      JdbcPassword=admin;
+      JdbcDrivers=org.postgresql.Driver;
+    </DataSourceInfo>
+
+    <ProviderName>Mondrian</ProviderName>
+    <ProviderType>MDP</ProviderType>
+    <AuthenticationMode>Unauthenticated</AuthenticationMode>
+
+    <Catalogs>
+      <Catalog name="DW">
+        <Definition>/usr/local/tomcat/schema/foodmart.xml</Definition>
+      </Catalog>
+    </Catalogs>
+
+  </DataSource>
+</DataSources>
