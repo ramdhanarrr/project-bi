@@ -2,8 +2,8 @@ export default function HomeFooter() {
   return (
     <footer className="bg-[#0b9887] px-4 py-6 text-white sm:px-6 lg:px-8">
       <div className="mx-auto flex max-w-7xl flex-col items-center">
-        <div className="flex flex-col items-center justify-center gap-3 text-[13px] font-medium leading-5 text-[#F3E425] sm:flex-row sm:gap-16">
-          <div className="flex items-start gap-2 text-left">
+        <div className="grid w-full gap-3 text-[13px] font-medium leading-5 text-[#F3E425] sm:w-auto sm:grid-cols-2 sm:gap-16">
+          <div className="flex items-start justify-center gap-2 text-left">
             <svg
               viewBox="0 0 24 24"
               className="mt-[2px] h-[13px] w-[13px] shrink-0"
@@ -22,7 +22,7 @@ export default function HomeFooter() {
             </span>
           </div>
 
-          <div className="flex items-start gap-2 text-left">
+          <div className="flex items-start justify-center gap-2 text-left">
             <svg
               viewBox="0 0 24 24"
               className="mt-[2px] h-[13px] w-[13px] shrink-0"

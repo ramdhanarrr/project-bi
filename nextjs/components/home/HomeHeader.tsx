@@ -52,6 +52,7 @@ function resolveActiveMenu(pathname: string, hash: string) {
 export default function HomeHeader() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+  const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState("home");
   const [userName, setUserName] = useState("Pengguna SADAYA");
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -77,6 +78,7 @@ export default function HomeHeader() {
     function handleEscape(event: KeyboardEvent) {
       if (event.key === "Escape") {
         setIsOpen(false);
+        setIsMobileNavOpen(false);
       }
     }
 
@@ -95,8 +97,8 @@ export default function HomeHeader() {
   return (
     <header className="sticky top-0 z-20 border-b border-white/10 bg-[#0b9887] text-white shadow-[0_2px_10px_rgba(15,23,42,0.08)]">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-3 sm:px-6 lg:px-8">
-        <Link href="/beranda" className="flex items-center gap-3">
-          <div className="relative h-11 w-11 shrink-0">
+        <Link href="/beranda" className="flex min-w-0 items-center gap-3">
+          <div className="relative h-10 w-10 shrink-0 sm:h-11 sm:w-11">
             <Image
               src="/upn-logo.png"
               alt="Logo UPN Veteran Jawa Timur"
@@ -105,11 +107,11 @@ export default function HomeHeader() {
               priority
             />
           </div>
-          <div className="leading-tight">
-            <div className="text-[1.9rem] font-semibold tracking-tight text-[#F3E425]">
+          <div className="min-w-0 leading-tight">
+            <div className="truncate text-[1.55rem] font-semibold tracking-tight text-[#F3E425] sm:text-[1.9rem]">
               SADAYA
             </div>
-            <div className="text-[12px] font-medium text-[#F3E425]">
+            <div className="truncate text-[11px] font-medium text-[#F3E425] sm:text-[12px]">
               UPN &quot;Veteran&quot; Jawa Timur
             </div>
           </div>
@@ -205,7 +207,67 @@ export default function HomeHeader() {
             ) : null}
           </div>
         </div>
+
+        <button
+          type="button"
+          onClick={() => setIsMobileNavOpen((prev) => !prev)}
+          className="grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-[#F3E425]/60 bg-white/8 text-[#F3E425] transition hover:bg-white/14 lg:hidden"
+          aria-label="Menu navigasi"
+          aria-expanded={isMobileNavOpen}
+        >
+          <svg
+            viewBox="0 0 24 24"
+            className="h-5 w-5"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            {isMobileNavOpen ? (
+              <>
+                <path d="M18 6 6 18" />
+                <path d="m6 6 12 12" />
+              </>
+            ) : (
+              <>
+                <path d="M4 7h16" />
+                <path d="M4 12h16" />
+                <path d="M4 17h16" />
+              </>
+            )}
+          </svg>
+        </button>
       </div>
+
+      {isMobileNavOpen ? (
+        <div className="border-t border-white/10 px-4 pb-4 sm:px-6 lg:hidden">
+          <nav className="grid gap-2 pt-3">
+            {navItems.map((item) => {
+              const isActive = activeMenu === item.key;
+
+              return (
+                <Link
+                  key={item.key}
+                  href={item.href}
+                  onClick={() => {
+                    setActiveMenu(item.key);
+                    setIsMobileNavOpen(false);
+                  }}
+                  className={`rounded-xl px-4 py-3 text-sm font-semibold transition ${
+                    isActive
+                      ? "bg-[#F3E425] text-[#075f56] shadow-sm"
+                      : "bg-white/10 text-white hover:bg-white/16"
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
+          </nav>
+        </div>
+      ) : null}
     </header>
   );
 }

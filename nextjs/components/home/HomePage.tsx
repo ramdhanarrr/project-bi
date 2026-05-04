@@ -63,16 +63,16 @@ export default function HomePage() {
 
       <section className="relative overflow-hidden">
         <div
-          className="h-[330px] bg-cover bg-center bg-no-repeat sm:h-[380px] lg:h-[430px]"
+          className="h-[240px] bg-cover bg-center bg-no-repeat sm:h-[340px] lg:h-[430px]"
           style={{ backgroundImage: "url('/upn-home-hero.jpeg')" }}
         />
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.08),rgba(255,255,255,0.38)_72%,rgba(255,255,255,0.9))]" />
       </section>
 
-      <section id="dashboard" className="scroll-mt-24 px-4 pb-20 pt-8 sm:px-6 lg:px-8">
+      <section id="dashboard" className="scroll-mt-24 px-4 pb-14 pt-8 sm:px-6 sm:pb-20 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <div className="mb-10 text-center">
-            <h2 className="text-[2rem] font-semibold uppercase tracking-tight text-slate-900">
+          <div className="mb-8 text-center sm:mb-10">
+            <h2 className="text-[1.65rem] font-semibold uppercase tracking-tight text-slate-900 sm:text-[2rem]">
               Dashboard
             </h2>
             <div className="mx-auto mt-2 h-1 w-28 rounded-full bg-[#0b9887]" />
@@ -91,10 +91,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="tentang-kami" className="scroll-mt-24 px-4 pb-20 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-5xl rounded-[24px] bg-white px-8 py-10 shadow-[0_14px_36px_rgba(15,23,42,0.08)] ring-1 ring-slate-200/70">
+      <section id="tentang-kami" className="scroll-mt-24 px-4 pb-14 sm:px-6 sm:pb-20 lg:px-8">
+        <div className="mx-auto max-w-5xl rounded-2xl bg-white px-5 py-8 shadow-[0_14px_36px_rgba(15,23,42,0.08)] ring-1 ring-slate-200/70 sm:px-8 sm:py-10">
           <div className="text-center">
-            <h2 className="text-[2rem] font-semibold tracking-tight text-slate-900">
+            <h2 className="text-[1.65rem] font-semibold tracking-tight text-slate-900 sm:text-[2rem]">
               Tentang Kami
             </h2>
             <p className="mx-auto mt-4 max-w-3xl text-sm leading-7 text-slate-600 sm:text-base">
