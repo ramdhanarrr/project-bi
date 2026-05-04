@@ -8,8 +8,8 @@ import { usePathname } from "next/navigation";
 
 const navItems = [
   { label: "Home", href: "/beranda", key: "home" },
-  { label: "Dashboard", href: "#dashboard", key: "dashboard" },
-  { label: "Tentang Kami", href: "#tentang-kami", key: "tentang-kami" },
+  { label: "Dashboard", href: "/beranda#dashboard", key: "dashboard" },
+  { label: "Tentang Kami", href: "/beranda#tentang-kami", key: "tentang-kami" },
 ];
 
 function MenuIcon({ children }: { children: ReactNode }) {
@@ -30,6 +30,10 @@ function MenuIcon({ children }: { children: ReactNode }) {
 }
 
 function resolveActiveMenu(pathname: string, hash: string) {
+  if (pathname.startsWith("/dashboard")) {
+    return "dashboard";
+  }
+
   if (pathname !== "/beranda") {
     return "home";
   }

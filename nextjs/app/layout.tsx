@@ -10,8 +10,13 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "SADAYA UPN Login",
+  title: "SADAYA UPN",
   description: "Halaman login SADAYA UPN Veteran Jawa Timur",
+  icons: {
+    icon: "/upn-logo.png",
+    shortcut: "/upn-logo.png",
+    apple: "/upn-logo.png",
+  },
 };
 
 export default function RootLayout({

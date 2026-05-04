@@ -5,6 +5,7 @@ import HomeHeader from "@/components/home/HomeHeader";
 const shortcuts = [
   {
     title: "Akademik",
+    href: "/dashboard/akademik",
     icon: (
       <svg viewBox="0 0 24 24" className="h-10 w-10" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d="M2 9l10-5 10 5-10 5-10-5Z" />
@@ -15,6 +16,7 @@ const shortcuts = [
   },
   {
     title: "Non-Akademik",
+    href: "/dashboard/non-akademik",
     icon: (
       <svg viewBox="0 0 24 24" className="h-10 w-10" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d="M7 3h10a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z" />
@@ -26,6 +28,7 @@ const shortcuts = [
   },
   {
     title: "Penelitian",
+    href: "/dashboard/penelitian",
     icon: (
       <svg viewBox="0 0 24 24" className="h-10 w-10" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d="M4 5h16v14H4z" />
@@ -39,6 +42,7 @@ const shortcuts = [
   },
   {
     title: "Pengabdian Masyarakat",
+    href: "/dashboard/pengabdian",
     icon: (
       <svg viewBox="0 0 24 24" className="h-10 w-10" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d="M4 4h6v6H4z" />
@@ -80,6 +84,7 @@ export default function HomePage() {
                 key={shortcut.title}
                 title={shortcut.title}
                 icon={shortcut.icon}
+                href={shortcut.href}
               />
             ))}
           </div>
