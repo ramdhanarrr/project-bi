@@ -4,7 +4,6 @@ import { useState } from "react";
 import Link from "next/link";
 import HomeHeader from "@/components/home/HomeHeader";
 import {
-  categories,
   scenarios,
   type DashboardCategory,
 } from "@/components/dashboard/dashboardData";
@@ -32,91 +31,6 @@ function SidebarToggleIcon({ collapsed }: { collapsed: boolean }) {
       <path d="M4 12h16" />
       <path d="M4 19h16" />
       <path d={collapsed ? "M15 8l4 4-4 4" : "M9 8l-4 4 4 4"} />
-    </svg>
-  );
-}
-
-function CategoryIcon({ slug }: { slug: string }) {
-  const iconClass = "h-5 w-5";
-
-  if (slug === "akademik") {
-    return (
-      <svg
-        viewBox="0 0 24 24"
-        className={iconClass}
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.9"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        aria-hidden="true"
-      >
-        <path d="M2 9l10-5 10 5-10 5-10-5Z" />
-        <path d="M6 11v4a6 6 0 0 0 12 0v-4" />
-        <path d="M22 10v6" />
-      </svg>
-    );
-  }
-
-  if (slug === "non-akademik") {
-    return (
-      <svg
-        viewBox="0 0 24 24"
-        className={iconClass}
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.9"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        aria-hidden="true"
-      >
-        <path d="M7 3h10a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z" />
-        <path d="M9 7h6" />
-        <path d="M12 13a2.5 2.5 0 1 0 0.01 0" />
-        <path d="M8 19a4 4 0 0 1 8 0" />
-      </svg>
-    );
-  }
-
-  if (slug === "penelitian") {
-    return (
-      <svg
-        viewBox="0 0 24 24"
-        className={iconClass}
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.9"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        aria-hidden="true"
-      >
-        <path d="M4 5h16v14H4z" />
-        <path d="M8 9h8" />
-        <path d="M8 13h4" />
-        <path d="M16 13h.01" />
-        <path d="M16 17h.01" />
-        <path d="M8 17h4" />
-      </svg>
-    );
-  }
-
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      className={iconClass}
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.9"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <path d="M4 4h6v6H4z" />
-      <path d="M14 4h6v6h-6z" />
-      <path d="M4 14h6v6H4z" />
-      <path d="M14 14l6-6" />
-      <path d="M14 20l6-6" />
-      <path d="M17 17h3v3" />
     </svg>
   );
 }
@@ -156,43 +70,6 @@ export default function DashboardShell({
             >
               <SidebarToggleIcon collapsed={isSidebarCollapsed} />
             </button>
-          </div>
-
-          <div className="mb-5">
-            <div
-              className={`mb-3 px-2 text-xs font-semibold uppercase tracking-[0.14em] text-slate-400 ${
-                isSidebarCollapsed ? "lg:hidden" : ""
-              }`}
-            >
-              Kategori
-            </div>
-            <div className="grid grid-cols-2 gap-2 sm:grid-cols-4 lg:grid-cols-1">
-              {categories.map((category) => {
-                const isActive = category.slug === activeSlug;
-
-                return (
-                  <Link
-                    key={category.slug}
-                    href={`/dashboard/${category.slug}?skenario=${activeScenario}`}
-                    className={`flex min-h-11 items-center gap-3 rounded-lg px-3 py-3 text-sm font-semibold transition ${
-                      isSidebarCollapsed ? "lg:justify-center lg:px-2" : ""
-                    } ${
-                      isActive
-                        ? "bg-[#0b9887] text-white shadow-sm"
-                        : "bg-slate-50 text-slate-700 hover:bg-[#0b9887]/10 hover:text-[#087d70]"
-                    }`}
-                    title={category.label}
-                  >
-                    <span className="grid h-6 w-6 shrink-0 place-items-center">
-                      <CategoryIcon slug={category.slug} />
-                    </span>
-                    <span className={isSidebarCollapsed ? "lg:hidden" : ""}>
-                      {category.label}
-                    </span>
-                  </Link>
-                );
-              })}
-            </div>
           </div>
 
           <div
