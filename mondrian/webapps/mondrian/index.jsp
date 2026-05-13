@@ -29,12 +29,17 @@ analyze very large datasets stored in SQL databases without writing SQL.">
 
             <p>Other links:</p>
             <ul>
-                <li><a href="testpage.jsp?query=sales">DW Sales (fact_sales)</a></li>
-                <li><a href="testpage.jsp?query=purchasing">DW Purchasing (fact_purchasing)</a></li>
                 <li><a href="http://mondrian.pentaho.com">Mondrian home page</a></li>
                 <li><a href="http://sourceforge.net/projects/mondrian">Mondrian project page</a></li>
                 <li><a href="http://jpivot.sourceforge.net/">JPivot home page</a></li>
                 <li><a href="http://sourceforge.net/projects/jpivot">JPivot project page</a></li>
+            </ul>
+
+            <p>Project BI (Penelitian):</p>
+            <ul>
+                <li><a href="project-bi.jsp">Penelitian Dosen</a></li>
+                <li><a href="project-bi-reports.jsp">Publikasi</a></li>
+                <li><a href="project-bi-reports.jsp">Hak Kekayaan Intelektual</a></li>
             </ul>
 
         </body>

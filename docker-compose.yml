@@ -18,6 +18,20 @@ services:
       retries: 5
     networks: [bi-net]
 
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: dw_pgadmin
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "8080:80"
+    networks: [bi-net]
+    depends_on:
+      db:
+        condition: service_healthy
+
   metabase:
     image: metabase/metabase:latest
     container_name: bi_metabase
@@ -95,7 +109,10 @@ services:
       JAVA_OPTS: "-Xms512m -Xmx1024m"
     volumes:
       # pastikan file2 ini BENAR-BENAR ada di host:
-      - ./mondrian/webapps/mondrian.war:/usr/local/tomcat/webapps/mondrian.war:ro
+      # Hapus atau comment baris .war lama:
+      # - ./mondrian/webapps/mondrian.war:/usr/local/tomcat/webapps/mondrian.war:ro
+      # Ganti dengan mounting folder webapps secara langsung:
+      - ./mondrian/webapps/mondrian:/usr/local/tomcat/webapps/mondrian:rw
       - ./mondrian/lib/postgresql.jar:/usr/local/tomcat/lib/postgresql.jar:ro  # contoh: postgresql-42.7.3.jar → rename ke postgresql.jar atau ganti path kanan
       - ./mondrian/schema:/opt/mondrian/schema:ro
       - ./mondrian/context.xml:/usr/local/tomcat/conf/Catalina/localhost/mondrian.xml:ro
