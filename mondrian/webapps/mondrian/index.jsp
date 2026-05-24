@@ -1,47 +1,75 @@
-<%@page contentType="text/html" %>
-    <%-- // This software is subject to the terms of the Eclipse Public License v1.0 // Agreement, available at the
-        following URL: // http://www.eclipse.org/legal/epl-v10.html. // You must accept the terms of that agreement to
-        use this software. // // Copyright (C) 2001-2005 Julian Hyde // Copyright (C) 2005-2010 Pentaho and others //
-        All Rights Reserved. // // jhyde, 6 August, 2001 --%>
-        <html>
+<html>
 
-        <head>
-            <meta name="description" content="Mondrian is an OLAP server written in Java. It enables you to interactively
-analyze very large datasets stored in SQL databases without writing SQL.">
-            <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
-            <title>Mondrian OLAP Server</title>
-            <link rel="stylesheet" href="stylesheet.css" type="text/css" />
-        </head>
+<head>
+    <title>Mondrian OLAP Server</title>
+    <link rel="stylesheet" href="style.css">
+</head>
 
-        <body>
-            <p>Mondrian examples:</p>
-            <ul>
-                <li><a href="testpage.jsp?query=mondrian">JPivot pivot table</a></li>
-                <li><a href="testpage.jsp?query=xmla">JPivot pivot table by XMLA</a></li>
-                <li><a href="testpage.jsp?query=fourhier">JPivot with 4 hierarchies</a></li>
-                <li><a href="testpage.jsp?query=testrole">JPivot with role 'California Manager' set</a></li>
-                <li><a href="testpage.jsp?query=arrows">JPivot with arrows</a></li>
-                <li><a href="testpage.jsp?query=colors">JPivot with colors</a></li>
-                <li><a href="taglib.jsp">Various queries formatted using the Mondrian tag-library</a></li>
-                <li><a href="adhoc.jsp">Basic interface for ad hoc queries</a></li>
-                <li><a href="xmlaTest.jsp">XML for Analysis tester</a></li>
-            </ul>
+<body>
 
-            <p>Other links:</p>
-            <ul>
-                <li><a href="http://mondrian.pentaho.com">Mondrian home page</a></li>
-                <li><a href="http://sourceforge.net/projects/mondrian">Mondrian project page</a></li>
-                <li><a href="http://jpivot.sourceforge.net/">JPivot home page</a></li>
-                <li><a href="http://sourceforge.net/projects/jpivot">JPivot project page</a></li>
-            </ul>
+    <div class="olap-wrapper">
 
-            <p>Project BI (Penelitian):</p>
-            <ul>
-                <li><a href="project-bi.jsp">Penelitian Dosen</a></li>
-                <li><a href="project-bi-reports.jsp">Publikasi</a></li>
-                <li><a href="project-bi-reports.jsp">Hak Kekayaan Intelektual</a></li>
-            </ul>
+        <div class="olap-subtitle">
+            Pilih skema OLAP untuk eksplorasi data multidimensi
+        </div>
 
-        </body>
+        <div class="olap-grid">
 
-        </html>
+            <a href="testpage.jsp?query=penelitian" class="olap-card">
+
+                <div class="olap-icon">
+                    P
+                </div>
+
+                <div class="olap-card-title">
+                    Penelitian
+                </div>
+
+                <div class="olap-card-desc">
+                    Analisis multidimensi data penelitian dosen berdasarkan status,
+                    bidang fokus, skim penelitian, dan waktu.
+                </div>
+
+            </a>
+
+            <a href="testpage.jsp?query=publikasi" class="olap-card">
+
+                <div class="olap-icon">
+                    J
+                </div>
+
+                <div class="olap-card-title">
+                    Publikasi
+                </div>
+
+                <div class="olap-card-desc">
+                    Analisis multidimensi data publikasi ilmiah berdasarkan jenis,
+                    kategori, sitasi, dan tahun publikasi.
+                </div>
+
+            </a>
+
+            <a href="testpage.jsp?query=hki" class="olap-card">
+
+                <div class="olap-icon">
+                    H
+                </div>
+
+                <div class="olap-card-title">
+                    Hak Kekayaan Intelektual
+                </div>
+
+                <div class="olap-card-desc">
+                    Analisis multidimensi data HKI berdasarkan status pengajuan,
+                    jenis HKI, dan fakultas.
+                </div>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

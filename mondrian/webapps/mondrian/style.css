@@ -1,0 +1,401 @@
+body{
+    margin:0;
+    padding:32px;
+    background:#f8fafc;
+    font-family:'Poppins', 'Segoe UI', sans-serif;
+    color:#0f172a;
+}
+
+/* Container */
+
+.olap-wrapper{
+    max-width:1200px;
+    margin:auto;
+}
+
+/* Header */
+
+.olap-title{
+    font-size:32px;
+    font-weight:700;
+    color:#0f172a;
+    margin-bottom:10px;
+}
+
+.olap-subtitle{
+    color:#64748b;
+    font-size:15px;
+    margin-bottom:32px;
+}
+
+/* Grid */
+
+.olap-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:24px;
+}
+
+/* Card */
+
+.olap-card{
+    background:white;
+    border-radius:24px;
+    padding:28px;
+    text-decoration:none;
+    transition:0.25s;
+    border:1px solid #e2e8f0;
+    box-shadow:
+        0 4px 12px rgba(15,23,42,0.04),
+        0 2px 4px rgba(15,23,42,0.03);
+}
+
+.olap-card:hover{
+    transform:translateY(-4px);
+    border-color:#0b9887;
+    box-shadow:
+        0 10px 24px rgba(15,23,42,0.08);
+}
+
+/* Title */
+
+.olap-card-title{
+    font-size:22px;
+    font-weight:700;
+    color:#0f172a;
+    margin-bottom:10px;
+}
+
+/* Desc */
+
+.olap-card-desc{
+    color:#64748b;
+    line-height:1.6;
+    font-size:14px;
+}
+
+/* Icon */
+
+.olap-icon{
+    width:52px;
+    height:52px;
+    border-radius:16px;
+    background:#e0f4f1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:18px;
+    color:#0b9887;
+    font-size:24px;
+    font-weight:bold;
+}
+
+/* JPivot embed */
+
+.olap-pivot-page{
+    padding:20px 22px;
+    background:#fff;
+    color:#0f172a;
+}
+
+.olap-pivot-page form{
+    min-height:calc(100vh - 40px);
+    margin:0;
+    overflow:auto;
+    background:#fff;
+}
+
+.olap-pivot-header{
+    position:sticky;
+    top:0;
+    z-index:5;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:14px;
+    margin:0;
+    padding:14px 22px 12px;
+    border-bottom:1px solid #e2e8f0;
+    background:#fff;
+}
+
+.olap-pivot-page h2{
+    margin:0;
+    color:#0f172a;
+    font-size:22px;
+    font-weight:700;
+    letter-spacing:0;
+}
+
+.olap-pivot-page h3{
+    margin:18px 22px 10px;
+    color:#0f172a;
+    font-size:16px;
+}
+
+.olap-pivot-page p{
+    margin:14px 22px;
+}
+
+.olap-pivot-page a{
+    color:#087f71;
+    font-weight:600;
+    text-decoration:none;
+}
+
+.olap-pivot-page a:hover{
+    color:#075f56;
+    text-decoration:underline;
+}
+
+.olap-pivot-page table{
+    border-collapse:separate;
+    border-spacing:0;
+    font-family:'Poppins', 'Segoe UI', sans-serif;
+}
+
+.olap-pivot-page input,
+.olap-pivot-page select,
+.olap-pivot-page textarea,
+.olap-pivot-page button{
+    font-family:'Poppins', 'Segoe UI', sans-serif;
+}
+
+.olap-pivot-page input[type="text"],
+.olap-pivot-page textarea,
+.olap-pivot-page select{
+    border:1px solid #cbd5e1;
+    border-radius:8px;
+    background:#fff;
+    color:#0f172a;
+    outline:none;
+}
+
+.olap-pivot-page input[type="text"]:focus,
+.olap-pivot-page textarea:focus,
+.olap-pivot-page select:focus{
+    border-color:#0b9887;
+    box-shadow:0 0 0 3px rgba(11,152,135,0.12);
+}
+
+.olap-pivot-page .toolbar,
+.olap-pivot-page table.toolbar,
+.olap-pivot-page table.htoolbar,
+.olap-pivot-page table.vtoolbar,
+.olap-pivot-page table.jpivot-toolbar{
+    margin:10px 22px 18px;
+    padding:0;
+    border:0;
+    background:transparent;
+}
+
+.olap-pivot-page .toolbar img,
+.olap-pivot-page table.htoolbar img,
+.olap-pivot-page table.vtoolbar img,
+.olap-pivot-page table.jpivot-toolbar img{
+    border-radius:6px;
+}
+
+.olap-toolbar-heading{
+    margin:18px 22px 8px;
+    padding:0;
+}
+
+.olap-toolbar-title{
+    color:#0f172a;
+    font-size:15px;
+    font-weight:700;
+}
+
+.olap-toolbar-help{
+    margin-top:4px;
+    color:#64748b;
+    font-size:13px;
+    line-height:1.5;
+}
+
+.olap-pivot-page table.jpivot-toolbar{
+    display:block;
+    overflow-x:auto;
+}
+
+.olap-pivot-page table.jpivot-toolbar tbody,
+.olap-pivot-page table.jpivot-toolbar tr{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    align-items:stretch;
+}
+
+.olap-pivot-page .jpivot-toolbar-item{
+    display:block;
+    min-width:96px;
+    border:1px solid #dbe6e4 !important;
+    border-radius:10px;
+    background:#fff;
+    padding:7px 9px;
+    transition:0.2s;
+}
+
+.olap-pivot-page .jpivot-toolbar-item:hover{
+    border-color:#0b9887 !important;
+    background:#e0f4f1;
+}
+
+.olap-pivot-page .jpivot-toolbar-link{
+    display:flex;
+    align-items:center;
+    gap:7px;
+    color:#0f172a;
+}
+
+.olap-pivot-page .jpivot-toolbar-icon{
+    width:24px;
+    height:24px;
+    margin:0;
+    vertical-align:middle;
+}
+
+.olap-pivot-page input.jpivot-toolbar-icon{
+    padding:0;
+    border:0;
+    background:transparent;
+}
+
+.olap-pivot-page .jpivot-toolbar-label{
+    display:inline-block;
+    max-width:116px;
+    vertical-align:middle;
+    color:#0f172a;
+    font-size:12px;
+    font-weight:700;
+    line-height:1.25;
+}
+
+.olap-pivot-page .jpivot-toolbar-separator{
+    display:block;
+    width:1px;
+    min-width:1px;
+    margin:6px 2px;
+    padding:0;
+    border:0 !important;
+    background:#cbd5e1;
+}
+
+.olap-pivot-page table.mdx,
+.olap-pivot-page table.result,
+.olap-pivot-page table.xtable,
+.olap-pivot-page .mdxtable,
+.olap-pivot-page .xtable{
+    margin:0 22px 18px;
+    overflow:hidden;
+    border:1px solid #dbe6e4;
+    background:#fff;
+}
+
+.olap-pivot-page th,
+.olap-pivot-page .column-heading,
+.olap-pivot-page .row-heading,
+.olap-pivot-page .heading{
+    background:#f1f5f9 !important;
+    color:#334155 !important;
+    font-weight:700;
+}
+
+.olap-pivot-page td,
+.olap-pivot-page th{
+    border-color:#e2e8f0 !important;
+    padding:7px 9px;
+    color:#334155;
+    font-size:13px;
+}
+
+.olap-pivot-page tr:nth-child(even) td{
+    background:#fbfdfe;
+}
+
+.olap-pivot-page td:hover{
+    background:#e0f4f1 !important;
+}
+
+.olap-pivot-page .odd,
+.olap-pivot-page .even{
+    background:#fff;
+}
+
+.olap-pivot-page .xform,
+.olap-pivot-page form table{
+    max-width:100%;
+}
+
+.olap-pivot-page img{
+    max-width:none;
+}
+
+.olap-back-button{
+    display:inline-flex;
+    min-height:40px;
+    align-items:center;
+    justify-content:center;
+    margin:0;
+    border:1px solid #0b9887;
+    border-radius:10px;
+    background:#0b9887;
+    padding:0 16px;
+    color:#fff !important;
+    font-size:14px;
+    font-weight:700;
+    text-decoration:none !important;
+    transition:0.2s;
+}
+
+.olap-back-button:hover{
+    background:#087f71;
+    color:#fff !important;
+    text-decoration:none !important;
+}
+
+@media (max-width:768px){
+    body{
+        padding:18px;
+    }
+
+    .olap-pivot-page{
+        padding:10px;
+    }
+
+    .olap-pivot-page form{
+        min-height:calc(100vh - 20px);
+    }
+
+    .olap-pivot-header{
+        align-items:flex-start;
+        flex-direction:column;
+        padding:15px 16px 12px;
+    }
+
+    .olap-pivot-page h2{
+        font-size:19px;
+    }
+
+    .olap-pivot-page p,
+    .olap-pivot-page h3,
+    .olap-toolbar-heading,
+    .olap-pivot-page .toolbar,
+    .olap-pivot-page table.toolbar,
+    .olap-pivot-page table.htoolbar,
+    .olap-pivot-page table.vtoolbar,
+    .olap-pivot-page table.jpivot-toolbar,
+    .olap-pivot-page table.mdx,
+    .olap-pivot-page table.result,
+    .olap-pivot-page table.xtable,
+    .olap-pivot-page .mdxtable,
+    .olap-pivot-page .xtable{
+        margin-left:14px;
+        margin-right:14px;
+    }
+
+    .olap-pivot-page .jpivot-toolbar-item{
+        min-width:calc(50% - 4px);
+    }
+}

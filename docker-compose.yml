@@ -1,6 +1,6 @@
 services:
   db:
-    image: postgres:16
+    image: postgres:17
     container_name: dw_postgres
     restart: always
     environment:
@@ -97,7 +97,8 @@ services:
     networks: [bi-net]
 
   mondrian:
-    image: tomcat:9-jdk11
+    # image: tomcat:9-jdk11
+    image: tomcat:8-jre8
     container_name: olap_mondrian
     restart: always
     depends_on:
@@ -113,8 +114,7 @@ services:
       # - ./mondrian/webapps/mondrian.war:/usr/local/tomcat/webapps/mondrian.war:ro
       # Ganti dengan mounting folder webapps secara langsung:
       - ./mondrian/webapps/mondrian:/usr/local/tomcat/webapps/mondrian:rw
-      - ./mondrian/lib/postgresql.jar:/usr/local/tomcat/lib/postgresql.jar:ro  # contoh: postgresql-42.7.3.jar → rename ke postgresql.jar atau ganti path kanan
-      - ./mondrian/schema:/opt/mondrian/schema:ro
+      - ./mondrian/lib/postgresql.jar:/usr/local/tomcat/lib/postgresql.jar:ro  
       - ./mondrian/context.xml:/usr/local/tomcat/conf/Catalina/localhost/mondrian.xml:ro
     networks: [bi-net]
 

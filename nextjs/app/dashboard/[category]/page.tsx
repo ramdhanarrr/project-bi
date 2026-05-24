@@ -16,14 +16,19 @@ export default async function DashboardCategoryPage({
 }: DashboardPageProps) {
   const { category: activeSlug } = await params;
   const { skenario } = await searchParams;
-  const activeCategory = categories.find((category) => category.slug === activeSlug);
+
+  const activeCategory = categories.find(
+    (category) => category.slug === activeSlug
+  );
 
   if (!activeCategory) {
     notFound();
   }
 
-  const activeScenario = scenarios.some((scenario) => scenario.id === skenario)
-    ? skenario
+  const activeScenario = scenarios.some(
+    (scenario) => scenario.id === skenario
+  )
+    ? skenario!
     : "1";
 
   return (

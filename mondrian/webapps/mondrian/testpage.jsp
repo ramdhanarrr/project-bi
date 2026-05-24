@@ -36,8 +36,9 @@
   <link rel="stylesheet" type="text/css" href="wcf/form/xform.css">
   <link rel="stylesheet" type="text/css" href="wcf/table/xtable.css">
   <link rel="stylesheet" type="text/css" href="wcf/tree/xtree.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
 </head>
-<body bgcolor=white>
+<body class="olap-pivot-page">
 <form action="testpage.jsp" method="post">
 
 <%-- include query and title, so this jsp may be used with different queries --%>
@@ -59,7 +60,10 @@
 <wcf:form id="chartform01" xmlUri="/WEB-INF/jpivot/chart/chartpropertiesform.xml" model="#{chart01}" visible="false"/>
 <wcf:table id="query01.drillthroughtable" visible="false" selmode="none" editable="true"/>
 
-<h2><c:out value="${title01}"/></h2>
+<div class="olap-pivot-header">
+  <h2><c:out value="${title01}"/></h2>
+  <a class="olap-back-button" href="index.jsp">Kembali ke Pilihan OLAP</a>
+</div>
 
 <%-- define a toolbar --%>
 <wcf:toolbar id="toolbar01" bundle="com.tonbeller.jpivot.toolbar.resources">
@@ -86,8 +90,13 @@
   <wcf:imgbutton id="printxls" tooltip="toolb.excel" img="excel" href="./Print?cube=01&type=0"/>
 </wcf:toolbar>
 
+<div class="olap-toolbar-heading">
+  <div class="olap-toolbar-title">Menu Analisis</div>
+  <div class="olap-toolbar-help">Gunakan tombol berikut untuk mengatur tampilan tabel, membuka editor MDX, melihat grafik, atau mengekspor hasil analisis.</div>
+</div>
+
 <%-- render toolbar --%>
-<wcf:render ref="toolbar01" xslUri="/WEB-INF/jpivot/toolbar/htoolbar.xsl" xslCache="true"/>
+<wcf:render ref="toolbar01" xslUri="/WEB-INF/jpivot/toolbar/htoolbar.xsl" xslCache="false"/>
 <p>
 
 <%-- if there was an overflow, show error message --%>
@@ -129,9 +138,6 @@ Slicer:
 <p>
 <!-- render chart -->
 <wcf:render ref="chart01" xslUri="/WEB-INF/jpivot/chart/chart.xsl" xslCache="true"/>
-
-<p>
-<a href="index.jsp">back to index</a>
 
 </form>
 

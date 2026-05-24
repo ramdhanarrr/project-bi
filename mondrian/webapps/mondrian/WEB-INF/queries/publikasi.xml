@@ -1,0 +1,153 @@
+<?xml version="1.0"?>
+
+<Schema name="BI Publikasi">
+
+    <Cube name="Publikasi">
+
+        <!-- FACT -->
+        <Table name="fact_publikasi" schema="dwbi" />
+
+        <!-- ========================= -->
+        <!-- DIMENSI DOSEN -->
+        <!-- ========================= -->
+
+        <Dimension name="Dosen"
+                   foreignKey="sk_dosen">
+
+            <Hierarchy hasAll="true"
+                       allMemberName="Semua Dosen"
+                       primaryKey="sk_dosen">
+
+                <Table name="dim_dosen" schema="dwbi"/>
+
+                <Level name="StatusDosen"
+                       column="status_dosen"
+                       uniqueMembers="false"/>
+
+                <Level name="NamaDosen"
+                       column="sk_dosen"
+                       nameColumn="nama_dosen"
+                       uniqueMembers="true"/>
+
+            </Hierarchy>
+
+        </Dimension>
+
+        <!-- ========================= -->
+        <!-- DIMENSI SATKER -->
+        <!-- ========================= -->
+
+        <Dimension name="Satker"
+                foreignKey="sk_satker">
+
+            <Hierarchy hasAll="true"
+                    allMemberName="Semua Satker"
+                    primaryKey="sk_satker">
+
+                <Table name="dim_satker" schema="dwbi"/>
+
+                <Level name="Fakultas"
+                    column="fakultas"
+                    uniqueMembers="false"/>
+
+                <Level name="Prodi"
+                    column="prodi"
+                    uniqueMembers="false"/>
+
+            </Hierarchy>
+
+        </Dimension>
+
+        <!-- ========================= -->
+        <!-- DIMENSI JURNAL -->
+        <!-- ========================= -->
+
+        <Dimension name="Jurnal"
+                   foreignKey="sk_jurnal">
+
+            <Hierarchy hasAll="true"
+                       allMemberName="Semua Jurnal"
+                       primaryKey="sk_jurnal">
+
+                <Table name="dim_jurnal" schema="dwbi"/>
+
+                <Level name="NamaJurnal"
+                       column="nama_jurnal"
+                       uniqueMembers="true"/>
+
+            </Hierarchy>
+
+        </Dimension>
+
+        <!-- ========================= -->
+        <!-- DIMENSI JENIS PUBLIKASI -->
+        <!-- ========================= -->
+
+        <Dimension name="JenisPublikasi"
+                   foreignKey="sk_jenis_publikasi">
+
+            <Hierarchy hasAll="true"
+                       allMemberName="Semua Jenis"
+                       primaryKey="sk_jenis_publikasi">
+
+                <Table name="dim_jenis_publikasi" schema="dwbi"/>
+
+                <Level name="JenisPublikasi"
+                       column="jenis_publikasi"
+                       uniqueMembers="true"/>
+
+            </Hierarchy>
+
+        </Dimension>
+
+        <!-- ========================= -->
+        <!-- DIMENSI WAKTU -->
+        <!-- ========================= -->
+
+        <Dimension name="Waktu"
+                   foreignKey="sk_time">
+
+            <Hierarchy hasAll="true"
+                       allMemberName="Semua Waktu"
+                       primaryKey="sk_time">
+
+                <Table name="dim_time" schema="dwbi"/>
+
+                <Level name="Tahun"
+                       column="tahun"
+                       type="Numeric"
+                       uniqueMembers="true"/>
+
+                <Level name="Bulan"
+                       column="nama_bulan"
+                       uniqueMembers="false"/>
+
+            </Hierarchy>
+
+        </Dimension>
+
+        <!-- ========================= -->
+        <!-- MEASURES -->
+        <!-- ========================= -->
+
+        <Measure name="JumlahPublikasi"
+                 column="sk_publikasi"
+                 aggregator="distinct count"
+                 datatype="Numeric"
+                 formatString="#,###"/>
+
+        <Measure name="JumlahHalaman"
+                 column="jumlah_halaman"
+                 aggregator="sum"
+                 datatype="Numeric"
+                 formatString="#,###"/>
+
+        <Measure name="JumlahPublikasiScopus"
+                 column="jumlah_publikasi"
+                 aggregator="sum"
+                 datatype="Numeric"
+                 formatString="#,###"/>
+
+    </Cube>
+
+</Schema>

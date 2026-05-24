@@ -1,0 +1,194 @@
+<?xml version="1.0"?>
+
+<Schema name="BI HKI">
+
+    <Cube name="HKI">
+
+        <!-- FACT -->
+        <Table name="fact_ajuan_haki" schema="dwbi"/>
+
+        <!-- ========================= -->
+        <!-- DIMENSI DOSEN -->
+        <!-- ========================= -->
+
+        <Dimension name="Dosen"
+                   foreignKey="sk_dosen">
+
+            <Hierarchy hasAll="true"
+                       allMemberName="Semua Dosen"
+                       primaryKey="sk_dosen">
+
+                <Table name="dim_dosen" schema="dwbi"/>
+
+                <Level name="StatusDosen"
+                       column="status_dosen"
+                       uniqueMembers="false"/>
+
+                <Level name="NamaDosen"
+                       column="sk_dosen"
+                       nameColumn="nama_dosen"
+                       uniqueMembers="true"/>
+
+            </Hierarchy>
+
+        </Dimension>
+
+        <!-- ========================= -->
+        <!-- DIMENSI SATKER -->
+        <!-- ========================= -->
+
+        <Dimension name="Satker"
+                foreignKey="sk_satker">
+
+            <Hierarchy hasAll="true"
+                    allMemberName="Semua Satker"
+                    primaryKey="sk_satker">
+
+                <Table name="dim_satker" schema="dwbi"/>
+
+                <Level name="Fakultas"
+                    column="fakultas"
+                    uniqueMembers="false"/>
+
+                <Level name="Prodi"
+                    column="prodi"
+                    uniqueMembers="false"/>
+
+            </Hierarchy>
+
+        </Dimension>
+
+        <!-- ========================= -->
+        <!-- DIMENSI HKI -->
+        <!-- ========================= -->
+
+        <Dimension name="HKI"
+                   foreignKey="sk_hki">
+
+            <Hierarchy hasAll="true"
+                       allMemberName="Semua HKI"
+                       primaryKey="sk_hki">
+
+                <Table name="dim_hki" schema="dwbi"/>
+
+                <Level name="JudulKarya"
+                       column="judul_karya"
+                       uniqueMembers="true"/>
+
+            </Hierarchy>
+
+        </Dimension>
+
+        <!-- ========================= -->
+        <!-- DIMENSI JENIS HKI -->
+        <!-- ========================= -->
+
+        <Dimension name="JenisHKI"
+                   foreignKey="sk_jenis_hki">
+
+            <Hierarchy hasAll="true"
+                       allMemberName="Semua Jenis"
+                       primaryKey="sk_jenis_hki">
+
+                <Table name="dim_jenis_haki" schema="dwbi"/>
+
+                <Level name="SubJenis"
+                       column="subjenis"
+                       uniqueMembers="false"/>
+
+                <Level name="Kategori"
+                       column="kategori"
+                       uniqueMembers="false"/>
+
+            </Hierarchy>
+
+        </Dimension>
+
+        <!-- ========================= -->
+        <!-- DIMENSI STATUS -->
+        <!-- ========================= -->
+
+        <Dimension name="StatusHKI"
+                   foreignKey="sk_status_haki">
+
+            <Hierarchy hasAll="true"
+                       allMemberName="Semua Status"
+                       primaryKey="sk_status_haki">
+
+                <Table name="dim_status_haki" schema="dwbi"/>
+
+                <Level name="KategoriStatus"
+                       column="kategori_status"
+                       uniqueMembers="false"/>
+
+                <Level name="NamaStatus"
+                       column="nama_status"
+                       uniqueMembers="true"/>
+
+            </Hierarchy>
+
+        </Dimension>
+
+        <!-- ========================= -->
+        <!-- DIMENSI WAKTU -->
+        <!-- ========================= -->
+
+        <Dimension name="Waktu"
+                   foreignKey="sk_time">
+
+            <Hierarchy hasAll="true"
+                       allMemberName="Semua Waktu"
+                       primaryKey="sk_time">
+
+                <Table name="dim_time" schema="dwbi"/>
+
+                <Level name="Tahun"
+                       column="tahun"
+                       type="Numeric"
+                       uniqueMembers="true"/>
+
+                <Level name="Bulan"
+                       column="nama_bulan"
+                       uniqueMembers="false"/>
+
+            </Hierarchy>
+
+        </Dimension>
+
+        <!-- ========================= -->
+        <!-- MEASURES -->
+        <!-- ========================= -->
+
+        <Measure name="JumlahHKI"
+                 column="sk_ajuan_haki"
+                 aggregator="distinct count"
+                 datatype="Numeric"
+                 formatString="#,###"/>
+
+        <Measure name="LamaProses"
+                 column="lama_proses"
+                 aggregator="avg"
+                 datatype="Numeric"
+                 formatString="#,###"/>
+
+        <Measure name="HKIGranted"
+                 column="is_granted"
+                 aggregator="sum"
+                 datatype="Numeric"
+                 formatString="#,###"/>
+
+        <Measure name="HKIRejected"
+                 column="is_rejected"
+                 aggregator="sum"
+                 datatype="Numeric"
+                 formatString="#,###"/>
+
+        <Measure name="HKIProses"
+                 column="is_proses"
+                 aggregator="sum"
+                 datatype="Numeric"
+                 formatString="#,###"/>
+
+    </Cube>
+
+</Schema>

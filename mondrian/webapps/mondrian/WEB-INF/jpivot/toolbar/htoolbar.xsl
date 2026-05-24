@@ -9,7 +9,7 @@
 <xsl:param name="imgpath" select="'jpivot/toolbar'"/>
 
 <xsl:template match="tool-bar">
-  <table border="0" cellspacing="1" cellpadding="0"  id="{$renderId}">
+  <table border="0" cellspacing="1" cellpadding="0"  id="{$renderId}" class="jpivot-toolbar">
     <tr>
       <xsl:apply-templates/>
     </tr>
@@ -17,24 +17,26 @@
 </xsl:template>
 
 <xsl:template match="tool-button">
-  <td>
-    <input type="image" name="{@id}" src="{$context}/{$imgpath}/{@img}.png" border="0" title="{@title}" width="24" height="24"/>
+  <td class="jpivot-toolbar-item">
+    <input class="jpivot-toolbar-icon" type="image" name="{@id}" src="{$context}/{$imgpath}/{@img}.png" border="0" title="{@title}" width="24" height="24"/>
+    <span class="jpivot-toolbar-label"><xsl:value-of select="@title"/></span>
   </td>
 </xsl:template>
 
 <xsl:template match="tool-sep">
-  <td>
-    <div style="width: 1ex"/>
+  <td class="jpivot-toolbar-separator">
+    <div/>
   </td>
 </xsl:template>
 
 <xsl:template match="img-button">
-  <td>
-    <a href="{@href}">
+  <td class="jpivot-toolbar-item">
+    <a class="jpivot-toolbar-link" href="{@href}">
       <xsl:if test="@target">
         <xsl:attribute name="target"><xsl:value-of select="@target"/></xsl:attribute>
       </xsl:if>
-      <img src="{$context}/{$imgpath}/{@img}.png" border="0" title="{@title}" width="24" height="24"/>
+      <img class="jpivot-toolbar-icon" src="{$context}/{$imgpath}/{@img}.png" border="0" title="{@title}" width="24" height="24"/>
+      <span class="jpivot-toolbar-label"><xsl:value-of select="@title"/></span>
     </a>
   </td>
 </xsl:template>

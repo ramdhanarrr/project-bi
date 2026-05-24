@@ -1,0 +1,170 @@
+<?xml version="1.0"?>
+
+<Schema name="BI Penelitian">
+
+    <Cube name="Penelitian Dosen">
+
+        <!-- FACT TABLE -->
+        <Table name="fact_penelitian_dosen" schema="dwbi"/>
+
+        <!-- ========================= -->
+        <!-- DIMENSI DOSEN -->
+        <!-- ========================= -->
+
+        <Dimension name="Dosen"
+                   foreignKey="sk_dosen">
+
+            <Hierarchy hasAll="true"
+                       allMemberName="Semua Dosen"
+                       primaryKey="sk_dosen">
+
+                <Table name="dim_dosen" schema="dwbi"/>
+
+                <Level name="StatusDosen"
+                     column="status_dosen"
+                     uniqueMembers="false"/>
+
+                <Level name="NamaDosen"
+                     column="nama_dosen"
+                     uniqueMembers="true"/>
+                       
+
+            </Hierarchy>
+
+        </Dimension>
+
+        <!-- ========================= -->
+        <!-- DIMENSI SKIM -->
+        <!-- ========================= -->
+
+        <Dimension name="Skim"
+                   foreignKey="sk_skim">
+
+            <Hierarchy hasAll="true"
+                       allMemberName="Semua Skim"
+                       primaryKey="sk_skim">
+
+                <Table name="dim_skim" schema="dwbi"/>
+
+                <Level name="KategoriSkim"
+                       column="kategori"/>
+
+                <Level name="SubkategoriSkim"
+                       column="sub_kategori"/>
+
+                <Level name="NamaSkim"
+                       column="nama_skim"/>
+
+            </Hierarchy>
+
+        </Dimension>
+
+        <!-- ========================= -->
+        <!-- DIMENSI BIDANG -->
+        <!-- ========================= -->
+
+        <Dimension name="Bidang"
+                   foreignKey="sk_bidang_fokus">
+
+            <Hierarchy hasAll="true"
+                       allMemberName="Semua Bidang"
+                       primaryKey="sk_bidang_fokus">
+
+                <Table name="dim_bidang_fokus" schema="dwbi"/>
+
+                <Level name="JenisBidang"
+                       column="jenis"/>
+
+                <Level name="NamaBidang"
+                       column="nama_bidang"/>
+
+            </Hierarchy>
+
+        </Dimension>
+
+        <!-- ========================= -->
+        <!-- DIMENSI WAKTU -->
+        <!-- ========================= -->
+
+        <Dimension name="Waktu"
+                   foreignKey="sk_time">
+
+            <Hierarchy hasAll="true"
+                       allMemberName="Semua Waktu"
+                       primaryKey="sk_time">
+
+                <Table name="dim_time" schema="dwbi"/>
+
+                <Level name="Tahun"
+                       column="tahun"
+                       type="Numeric"
+                       uniqueMembers="true"
+                       levelType="TimeYears"/>
+
+                <Level name="Bulan"
+                       column="nama_bulan"
+                       uniqueMembers="false"
+                       levelType="TimeMonths"/>
+
+                <Level name="Hari"
+                       column="nama_hari"
+                       uniqueMembers="false"
+                       levelType="TimeDays"/>
+
+            </Hierarchy>
+
+        </Dimension>
+
+        <!-- ========================= -->
+        <!-- DIMENSI STATUS -->
+        <!-- ========================= -->
+
+        <Dimension name="StatusUsulan"
+                   foreignKey="sk_status_litdimas">
+
+            <Hierarchy hasAll="true"
+                       allMemberName="Semua Status"
+                       primaryKey="sk_status_litdimas">
+
+                <Table name="dim_status_usulan_litdimas" />
+
+                <Level name="KategoriStatus"
+                       column="kategori_status"/>
+
+                <Level name="StatusUsulan"
+                       column="status_usulan"/>
+
+            </Hierarchy>
+
+        </Dimension>
+
+        <!-- ========================= -->
+        <!-- MEASURES -->
+        <!-- ========================= -->
+
+        <Measure name="JumlahPenelitian"
+                 column="sk_litdos"
+                 aggregator="distinct count"
+                 dataType="Numeric"
+                 formatString="#,###"/>
+
+        <Measure name="JumlahDana"
+                 column="jumlah_dana"
+                 aggregator="sum"
+                 dataType="Numeric"
+                 formatString="#,###"/>
+
+        <Measure name="JumlahPersonil"
+                 column="jumlah_personil"
+                 aggregator="sum"
+                 dataType="Numeric"
+                 formatString="#,###"/>
+
+        <Measure name="DurasiKegiatan"
+                 column="durasi_kegiatan"
+                 aggregator="avg"
+                 formatString="#,###"/>
+
+    </Cube>
+
+</Schema>

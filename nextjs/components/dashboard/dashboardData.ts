@@ -23,4 +23,5 @@ export const scenarios = [
   { id: "1", label: "Dashboard 1" },
   { id: "2", label: "Dashboard 2" },
   { id: "3", label: "Dashboard 3" },
+  { id: "4", label: "Analisis OLAP" }
 ];
