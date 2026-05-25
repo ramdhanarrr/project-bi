@@ -7,7 +7,7 @@ import {
 
 type DashboardPageProps = {
   params: Promise<{ category: string }>;
-  searchParams: Promise<{ skenario?: string }>;
+  searchParams: Promise<{ olap?: string; skenario?: string }>;
 };
 
 export default async function DashboardCategoryPage({
@@ -15,7 +15,7 @@ export default async function DashboardCategoryPage({
   searchParams,
 }: DashboardPageProps) {
   const { category: activeSlug } = await params;
-  const { skenario } = await searchParams;
+  const { olap, skenario } = await searchParams;
 
   const activeCategory = categories.find(
     (category) => category.slug === activeSlug
@@ -34,6 +34,7 @@ export default async function DashboardCategoryPage({
   return (
     <DashboardShell
       activeCategory={activeCategory}
+      activeOlapId={olap}
       activeScenario={activeScenario}
     />
   );
