@@ -50,7 +50,7 @@ export const scenarios: DashboardScenario[] = [
 export const metabaseInstanceUrls: Record<string, string> = {
   akademik: "",
   "non-akademik": "",
-  penelitian: "https://disc-alberta-dee-reporter.trycloudflare.com",
+  penelitian: "https://nightlife-reference-photography-rank.trycloudflare.com",
   pengabdian: "",
 };
 
@@ -71,10 +71,10 @@ export const metabaseDashboardEmbeds: Record<
   penelitian: {
     "1": {
       token:
-        "eyJhbGciOiJIUzI1NiJ9.eyJyZXNvdXJjZSI6eyJkYXNoYm9hcmQiOjJ9LCJwYXJhbXMiOnt9LCJpYXQiOjE3Nzk2OTg3OTgsImV4cCI6MTc3OTY5OTM5OCwiX2VtYmVkZGluZ19wYXJhbXMiOnsidGFodW4iOiJlbmFibGVkIn19.v7pOYLJ5bPC6ay12kqfbHlqHKvfiZgFHcPamxg7jocs",
+        "eyJhbGciOiJIUzI1NiJ9.eyJyZXNvdXJjZSI6eyJkYXNoYm9hcmQiOjJ9LCJwYXJhbXMiOnt9LCJpYXQiOjE3ODAyMDAzNjcsImV4cCI6MTc4MDIwMDk2NywiX2VtYmVkZGluZ19wYXJhbXMiOnsidGFodW4iOiJlbmFibGVkIiwiZmFrdWx0YXMiOiJlbmFibGVkIn19.CqaFvxWQmZ_QH_3Elq7-Jgjw9_jfgyIyZMlopN-y2LE",
     },
-    "2": { token: "" },
-    "3": { token: "" },
+    "2": { token: "eyJhbGciOiJIUzI1NiJ9.eyJyZXNvdXJjZSI6eyJkYXNoYm9hcmQiOjN9LCJwYXJhbXMiOnt9LCJpYXQiOjE3ODAyMDE2MzcsImV4cCI6MTc4MDIwMjIzNywiX2VtYmVkZGluZ19wYXJhbXMiOnsidGFodW4iOiJlbmFibGVkIn19.66eWulvCPnSTtwn0CXr5MDx7b8PREvDNrAP4LPws-70" },
+    "3": { token: "eyJhbGciOiJIUzI1NiJ9.eyJyZXNvdXJjZSI6eyJkYXNoYm9hcmQiOjR9LCJwYXJhbXMiOnt9LCJpYXQiOjE3ODAyMDE3OTEsImV4cCI6MTc4MDIwMjM5MSwiX2VtYmVkZGluZ19wYXJhbXMiOnsidGFodW4iOiJlbmFibGVkIn19.g2jBXPklkHfj8X6WyqytABQCqNFe9aduu6NdkRtzPHw" },
   },
   pengabdian: {
     "1": { token: "" },
@@ -87,7 +87,7 @@ export const olapDashboardEmbeds: Record<string, OlapDashboardConfig[]> = {
   akademik: [
     {
       id: "1",
-      label: "mhaasua",
+      label: "Mahasiswa",
       description:
         "Analisis multidimensi data akademik berdasarkan prodi, angkatan, status, dan waktu.",
       initial: "M",
@@ -139,27 +139,27 @@ export const olapDashboardEmbeds: Record<string, OlapDashboardConfig[]> = {
   penelitian: [
     {
       id: "1",
-      label: "Nilai Mahasiswa",
+      label: "Penelitian Dosen",
       description:
         "Analisis multidimensi data penelitian dosen berdasarkan status, bidang fokus, skim penelitian, dan waktu.",
-      initial: "P",
-      url: "https://cellular-hdtv-handhelds-least.trycloudflare.com/mondrian/index.jsp",
+      initial: "PD",
+      url: "https://adequate-testimony-subdivision-research.trycloudflare.com/mondrian/testpage.jsp?query=penelitian",
     },
     {
       id: "2",
-      label: "Beban Ajar",
+      label: "Publikasi Ilmiah",
       description:
-        "Analisis multidimensi data beban ajar berdasarkan jenis, kategori, sitasi, dan tahun publikasi.",
-      initial: "J",
-      url: "",
+        "Analisis multidimensi data publikasi ilmiah berdasarkan jenis, kategori, sitasi, dan tahun publikasi.",
+      initial: "PI",
+      url: "https://adequate-testimony-subdivision-research.trycloudflare.com/testpage.jsp?query=publikasi",
     },
     {
       id: "3",
-      label: "Konversi Mahasiswa",
+      label: "Hak Kekayaan Intelektual",
       description:
-        "Analisis multidimensi data konversi mahasiswa berdasarkan status, jenis konversi, dan fakultas.",
-      initial: "K",
-      url: "",
+        "Analisis multidimensi data hak kekayaan intelektual berdasarkan jenis, status, dan tahun.",
+      initial: "HKI",
+      url: "https://adequate-testimony-subdivision-research.trycloudflare.com/testpage.jsp?query=hki",
     },
   ],
   pengabdian: [

@@ -33,6 +33,30 @@
 
         </Dimension>
 
+        <Dimension name="Satker" foreignKey="sk_dosen">
+            <Hierarchy hasAll="true" 
+                       allMemberName="Semua Fakultas" 
+                       primaryKey="sk_dosen" 
+                       primaryKeyTable="dim_dosen">
+                
+                <Join leftKey="id_satker" rightKey="id_satker">
+                    <Table name="dim_dosen" schema="dwbi"/>
+                    <Table name="dim_satker" schema="dwbi"/>
+                </Join>
+
+                <Level name="Fakultas" 
+                       table="dim_satker" 
+                       column="fakultas" 
+                       uniqueMembers="false"/>
+
+                <Level name="Prodi" 
+                       table="dim_satker" 
+                       column="prodi" 
+                       uniqueMembers="false"/>
+
+            </Hierarchy>
+        </Dimension>
+
         <!-- ========================= -->
         <!-- DIMENSI SKIM -->
         <!-- ========================= -->
