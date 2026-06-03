@@ -59,14 +59,16 @@ services:
       dockerfile: Dockerfile
     container_name: app_laravel
     restart: always
-    depends_on: [db]
+    depends_on:
+      db:
+        condition: service_healthy
     ports:
       - "8000:8000"
     environment:
       DB_CONNECTION: pgsql
       DB_HOST: db
       DB_PORT: 5432
-      DB_DATABASE: postgres
+      DB_DATABASE: bi_app
       DB_USERNAME: postgres
       DB_PASSWORD: admin
       APP_ENV: local
@@ -89,6 +91,7 @@ services:
     environment:
       NODE_ENV: development
       NEXT_TELEMETRY_DISABLED: "1"
+      LARAVEL_API_URL: http://laravel:8000
     volumes:
       - ./nextjs:/app
       - /app/node_modules

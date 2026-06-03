@@ -3,47 +3,27 @@
     <%@ taglib uri="http://www.tonbeller.com/jpivot" prefix="jp" %>
         <%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 
-            <html>
+            <jp:mondrianQuery id="query01" jdbcDriver="org.postgresql.Driver"
+                jdbcUrl="jdbc:postgresql://dw_postgres:5432/dw" jdbcUser="postgres" jdbcPassword="admin"
+                catalogUri="/WEB-INF/queries/hki.xml" connectionPooling="false">
 
-            <head>
-                <title>Dashboard HKI</title>
+                SELECT
 
-                <link rel="stylesheet" href="/mondrian/style.css">
-            </head>
+                {
+                [Measures].[JumlahHKI],
+                [Measures].[HKIGranted],
+                [Measures].[HKIRejected],
+                [Measures].[HKIProses]
+                } ON COLUMNS,
 
-            <body>
+                {
+                [Satker].[Fakultas].Members
+                } ON ROWS
 
-                <div class="container">
+                FROM [HKI]
 
-                    <div class="dashboard-card">
+            </jp:mondrianQuery>
 
-                        <jp:mondrianQuery id="query01" jdbcDriver="org.postgresql.Driver"
-                            jdbcUrl="jdbc:postgresql://dw_postgres:5432/dw" jdbcUser="postgres" jdbcPassword="admin"
-                            catalogUri="/WEB-INF/queries/hki.xml" connectionPooling="false">
-
-                            SELECT
-
-                            {
-                            [Measures].[JumlahHKI],
-                            [Measures].[HKIGranted],
-                            [Measures].[HKIRejected],
-                            [Measures].[HKIProses]
-                            } ON COLUMNS,
-
-                            {
-                            [Satker].[Fakultas].Members
-                            } ON ROWS
-
-                            FROM [HKI]
-
-                        </jp:mondrianQuery>
-
-                        <c:set var="title01" scope="session">
-                            Analisis Multidimensi Hak Kekayaan Intelektual
-                        </c:set>
-
-                    </div>
-
-            </body>
-
-            </html>
+            <c:set var="title01" scope="session">
+                Analisis Multidimensi Hak Kekayaan Intelektual
+            </c:set>

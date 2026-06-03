@@ -25,14 +25,41 @@ export default function LoginScreen() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    setErrorMessage("");
+    setIsSubmitting(true);
 
-    const displayName = deriveDisplayName(email);
-    window.localStorage.setItem("sadayaUserName", displayName);
-    window.localStorage.setItem("sadayaUserEmail", email);
-    router.push("/beranda");
+    try {
+      const response = await fetch("/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setErrorMessage(data.message ?? "Login gagal. Coba lagi.");
+        return;
+      }
+
+      const displayName = data.user?.name ?? deriveDisplayName(email);
+      const userEmail = data.user?.email ?? email;
+
+      window.localStorage.setItem("sadayaUserName", displayName);
+      window.localStorage.setItem("sadayaUserEmail", userEmail);
+      router.push("/beranda");
+    } catch {
+      setErrorMessage("Backend belum bisa dihubungi. Pastikan Laravel menyala.");
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -150,11 +177,18 @@ export default function LoginScreen() {
                   Ingat saya di perangkat ini
                 </label>
 
+                {errorMessage ? (
+                  <p className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+                    {errorMessage}
+                  </p>
+                ) : null}
+
                 <button
                   type="submit"
-                  className="h-11 w-full rounded-xl bg-[#0b9887] text-sm font-semibold text-white transition hover:bg-[#087f71]"
+                  disabled={isSubmitting}
+                  className="h-11 w-full rounded-xl bg-[#0b9887] text-sm font-semibold text-white transition hover:bg-[#087f71] disabled:cursor-not-allowed disabled:bg-slate-300"
                 >
-                  Masuk
+                  {isSubmitting ? "Memproses..." : "Masuk"}
                 </button>
 
                 <p className="text-center text-xs leading-5 text-slate-400">
