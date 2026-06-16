@@ -259,9 +259,11 @@ function MetabaseDashboard({
   return (
     <div className="h-[calc(100vh-76px)] min-h-[720px] w-full overflow-hidden bg-white">
       <MetabaseDashboardEmbed
+        category={activeCategory.slug}
         config={config}
         instanceUrl={instanceUrl}
         label={`${activeCategory.label} ${scenario.label}`}
+        scenario={activeScenario}
       />
     </div>
   );

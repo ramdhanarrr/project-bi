@@ -11,7 +11,10 @@ export type DashboardScenario = {
 };
 
 export type MetabaseDashboardConfig = {
-  token: string;
+  dashboardId: number;
+  embeddingParams?: Record<string, "disabled" | "enabled">;
+  params?: Record<string, string | number | boolean | null>;
+  secretEnvKey?: string;
   withDownloads?: boolean;
   withTitle?: boolean;
   minHeight?: number;
@@ -50,7 +53,7 @@ export const scenarios: DashboardScenario[] = [
 export const metabaseInstanceUrls: Record<string, string> = {
   akademik: "",
   "non-akademik": "",
-  penelitian: "https://nightlife-reference-photography-rank.trycloudflare.com",
+  penelitian: "http://localhost:3001",
   pengabdian: "",
 };
 
@@ -59,27 +62,40 @@ export const metabaseDashboardEmbeds: Record<
   Partial<Record<string, MetabaseDashboardConfig>>
 > = {
   akademik: {
-    "1": { token: "" },
-    "2": { token: "" },
-    "3": { token: "" },
+    "1": { dashboardId: 0 },
+    "2": { dashboardId: 0 },
+    "3": { dashboardId: 0 },
   },
   "non-akademik": {
-    "1": { token: "" },
-    "2": { token: "" },
-    "3": { token: "" },
+    "1": { dashboardId: 0 },
+    "2": { dashboardId: 0 },
+    "3": { dashboardId: 0 },
   },
   penelitian: {
     "1": {
-      token:
-        "eyJhbGciOiJIUzI1NiJ9.eyJyZXNvdXJjZSI6eyJkYXNoYm9hcmQiOjJ9LCJwYXJhbXMiOnt9LCJpYXQiOjE3ODAyMDAzNjcsImV4cCI6MTc4MDIwMDk2NywiX2VtYmVkZGluZ19wYXJhbXMiOnsidGFodW4iOiJlbmFibGVkIiwiZmFrdWx0YXMiOiJlbmFibGVkIn19.CqaFvxWQmZ_QH_3Elq7-Jgjw9_jfgyIyZMlopN-y2LE",
+      dashboardId: 2,
+      embeddingParams: {
+        fakultas: "enabled",
+        tahun: "enabled",
+      },
     },
-    "2": { token: "eyJhbGciOiJIUzI1NiJ9.eyJyZXNvdXJjZSI6eyJkYXNoYm9hcmQiOjN9LCJwYXJhbXMiOnt9LCJpYXQiOjE3ODAyMDE2MzcsImV4cCI6MTc4MDIwMjIzNywiX2VtYmVkZGluZ19wYXJhbXMiOnsidGFodW4iOiJlbmFibGVkIn19.66eWulvCPnSTtwn0CXr5MDx7b8PREvDNrAP4LPws-70" },
-    "3": { token: "eyJhbGciOiJIUzI1NiJ9.eyJyZXNvdXJjZSI6eyJkYXNoYm9hcmQiOjR9LCJwYXJhbXMiOnt9LCJpYXQiOjE3ODAyMDE3OTEsImV4cCI6MTc4MDIwMjM5MSwiX2VtYmVkZGluZ19wYXJhbXMiOnsidGFodW4iOiJlbmFibGVkIn19.g2jBXPklkHfj8X6WyqytABQCqNFe9aduu6NdkRtzPHw" },
+    "2": {
+      dashboardId: 3,
+      embeddingParams: {
+        tahun: "enabled",
+      },
+    },
+    "3": {
+      dashboardId: 4,
+      embeddingParams: {
+        tahun: "enabled",
+      },
+    },
   },
   pengabdian: {
-    "1": { token: "" },
-    "2": { token: "" },
-    "3": { token: "" },
+    "1": { dashboardId: 0 },
+    "2": { dashboardId: 0 },
+    "3": { dashboardId: 0 },
   },
 };
 
@@ -143,7 +159,7 @@ export const olapDashboardEmbeds: Record<string, OlapDashboardConfig[]> = {
       description:
         "Analisis multidimensi data penelitian dosen berdasarkan status, bidang fokus, skim penelitian, dan waktu.",
       initial: "PD",
-      url: "https://adequate-testimony-subdivision-research.trycloudflare.com/mondrian/testpage.jsp?query=penelitian",
+      url: "http://localhost:8081/mondrian/testpage.jsp?query=penelitian",
     },
     {
       id: "2",
@@ -151,7 +167,7 @@ export const olapDashboardEmbeds: Record<string, OlapDashboardConfig[]> = {
       description:
         "Analisis multidimensi data publikasi ilmiah berdasarkan jenis, kategori, sitasi, dan tahun publikasi.",
       initial: "PI",
-      url: "https://adequate-testimony-subdivision-research.trycloudflare.com/testpage.jsp?query=publikasi",
+      url: "http://localhost:8081/mondrian/testpage.jsp?query=publikasi",
     },
     {
       id: "3",
@@ -159,7 +175,7 @@ export const olapDashboardEmbeds: Record<string, OlapDashboardConfig[]> = {
       description:
         "Analisis multidimensi data hak kekayaan intelektual berdasarkan jenis, status, dan tahun.",
       initial: "HKI",
-      url: "https://adequate-testimony-subdivision-research.trycloudflare.com/testpage.jsp?query=hki",
+      url: "http://localhost:8081/mondrian/testpage.jsp?query=hki",
     },
   ],
   pengabdian: [
