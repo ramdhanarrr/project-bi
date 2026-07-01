@@ -73,25 +73,31 @@ export default function LoginScreen() {
       <div className="relative flex min-h-screen items-center justify-center px-4 py-8 sm:px-6">
         <section className="grid w-full max-w-4xl overflow-hidden rounded-[24px] border border-white/70 bg-white/90 shadow-[0_24px_60px_rgba(15,23,42,0.14)] backdrop-blur sm:grid-cols-[0.9fr_1.1fr]">
           <div className="flex min-h-[260px] items-center justify-center bg-[#0b9887] px-8 py-9 text-white sm:min-h-[560px] sm:px-9 sm:py-10">
-            <div className="flex items-center gap-4">
-              <div className="relative h-16 w-16 shrink-0 sm:h-20 sm:w-20">
-                <Image
-                  src="/upn-logo.png"
-                  alt="Logo UPN Veteran Jawa Timur"
-                  fill
-                  className="object-contain"
-                  priority
-                />
+            <div className="flex flex-col items-center gap-4">
+              <div className="flex items-center gap-4">
+                <div className="relative h-16 w-16 shrink-0 sm:h-20 sm:w-20">
+                  <Image
+                    src="/upn-logo.png"
+                    alt="Logo UPN Veteran Jawa Timur"
+                    fill
+                    className="object-contain"
+                    priority
+                  />
+                </div>
+
+                <div className="max-w-[190px] space-y-1">
+                  <h1 className="text-[1.75rem] font-semibold tracking-tight text-[#F3E425] sm:text-[2rem]">
+                    SADAYA
+                  </h1>
+                  <p className="text-sm leading-5 text-[#F3E425] sm:text-[15px]">
+                    UPN &quot;Veteran&quot; Jawa Timur
+                  </p>
+                </div>
               </div>
 
-              <div className="max-w-[190px] space-y-1">
-                <h1 className="text-[1.75rem] font-semibold tracking-tight sm:text-[2rem] text-[#F3E425]">
-                  SADAYA
-                </h1>
-                <p className="text-sm leading-5 text-[#F3E425] sm:text-[15px]">
-                  UPN &quot;Veteran&quot; Jawa Timur
-                </p>
-              </div>
+              <p className="text-sm text-[#F3E425] sm:text-[15px]">
+                One Powerfull Data
+              </p>
             </div>
           </div>
 

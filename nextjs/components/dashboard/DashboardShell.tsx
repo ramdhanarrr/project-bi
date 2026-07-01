@@ -5,6 +5,7 @@ import Link from "next/link";
 import HomeHeader from "@/components/home/HomeHeader";
 import MetabaseDashboardEmbed from "@/components/dashboard/MetabaseDashboardEmbed";
 import {
+  getScenarioLabel,
   metabaseDashboardEmbeds,
   metabaseInstanceUrls,
   olapDashboardEmbeds,
@@ -84,6 +85,7 @@ function DashboardSidebar({
       <div className="flex gap-2 overflow-x-auto pb-1 lg:flex-col lg:overflow-visible lg:pb-0">
         {scenarios.map((scenario) => {
           const isActive = scenario.id === activeScenario;
+          const scenarioLabel = getScenarioLabel(activeSlug, scenario);
 
           return (
             <Link
@@ -107,7 +109,7 @@ function DashboardSidebar({
                 {scenario.id}
               </span>
               <span className={`truncate ${isCollapsed ? "lg:hidden" : ""}`}>
-                {scenario.label}
+                {scenarioLabel}
               </span>
             </Link>
           );
@@ -127,7 +129,7 @@ function DashboardHeader({
   const title =
     scenario.type === "olap"
       ? `Analisis OLAP ${activeCategory.label}`
-      : `${activeCategory.title} ${scenario.label}`;
+      : `${activeCategory.title} ${getScenarioLabel(activeCategory.slug, scenario)}`;
 
   return (
     <div className="mb-6 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
@@ -255,6 +257,7 @@ function MetabaseDashboard({
 }) {
   const config = metabaseDashboardEmbeds[activeCategory.slug]?.[activeScenario];
   const instanceUrl = metabaseInstanceUrls[activeCategory.slug];
+  const scenarioLabel = getScenarioLabel(activeCategory.slug, scenario);
 
   return (
     <div className="h-[calc(100vh-76px)] min-h-[720px] w-full overflow-hidden bg-white">
@@ -262,7 +265,7 @@ function MetabaseDashboard({
         category={activeCategory.slug}
         config={config}
         instanceUrl={instanceUrl}
-        label={`${activeCategory.label} ${scenario.label}`}
+        label={`${activeCategory.label} ${scenarioLabel}`}
         scenario={activeScenario}
       />
     </div>

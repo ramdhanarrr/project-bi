@@ -44,11 +44,38 @@ export const categories: DashboardCategory[] = [
 ];
 
 export const scenarios: DashboardScenario[] = [
-  { id: "1", label: "Dashboard 1", type: "metabase" },
-  { id: "2", label: "Dashboard 2", type: "metabase" },
-  { id: "3", label: "Dashboard 3", type: "metabase" },
+  { id: "1", label: "Ringkasan Data", type: "metabase" },
+  { id: "2", label: "Analisis Data", type: "metabase" },
+  { id: "3", label: "Luaran Data", type: "metabase" },
   { id: "4", label: "Analisis OLAP", type: "olap" },
 ];
+
+export const scenarioLabelsByCategory: Record<string, Record<string, string>> = {
+  akademik: {
+    "1": "Mahasiswa",
+    "2": "Perkuliahan",
+    "3": "Kelulusan",
+  },
+  "non-akademik": {
+    "1": "Keuangan",
+    "2": "Sarana Prasarana",
+    "3": "Kepegawaian",
+  },
+  penelitian: {
+    "1": "Penelitian Dosen",
+    "2": "Publikasi Ilmiah",
+    "3": "Hak Kekayaan Intelektual",
+  },
+  pengabdian: {
+    "1": "Kegiatan Pengabdian",
+    "2": "Mitra",
+    "3": "Luaran Pengabdian",
+  },
+};
+
+export function getScenarioLabel(categorySlug: string, scenario: DashboardScenario) {
+  return scenarioLabelsByCategory[categorySlug]?.[scenario.id] ?? scenario.label;
+}
 
 export const metabaseInstanceUrls: Record<string, string> = {
   akademik: "",

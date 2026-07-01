@@ -150,7 +150,7 @@
                        allMemberName="Semua Status"
                        primaryKey="sk_status_litdimas">
 
-                <Table name="dim_status_usulan_litdimas" />
+                <Table name="dim_status_usulan_litdimas" schema="dwbi"/>
 
                 <Level name="KategoriStatus"
                        column="kategori_status"/>
@@ -172,7 +172,7 @@
                  dataType="Numeric"
                  formatString="#,###"/>
 
-        <Measure name="JumlahDana"
+        <Measure name="JumlahUsulanDana"
                  column="jumlah_dana"
                  aggregator="sum"
                  dataType="Numeric"

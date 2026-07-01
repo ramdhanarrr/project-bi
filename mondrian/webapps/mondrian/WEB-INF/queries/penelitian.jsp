@@ -11,7 +11,7 @@
 
                 {
                 [Measures].[JumlahPenelitian],
-                [Measures].[JumlahDana]
+                [Measures].[JumlahUsulanDana]
                 } ON COLUMNS,
 
                 {
